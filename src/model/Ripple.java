@@ -9,10 +9,11 @@ package model;
  */
 public class Ripple extends Moedas implements Tarifacao {
     private Real real;
-    double cotacao = 0.38121;
+    private double cotacao;
     public Ripple(double saldo, Real real) {
         super(saldo);
         this.real = real;
+        this.cotacao = 0.38121;
     }
 
     public Ripple(Real real) {
@@ -22,6 +23,23 @@ public class Ripple extends Moedas implements Tarifacao {
     public Ripple(double saldo) {
         super(saldo);
     }
+
+    public Real getReal() {
+        return real;
+    }
+
+    public void setReal(Real real) {
+        this.real = real;
+    }
+
+    public double getCotacao() {
+        return cotacao;
+    }
+
+    public void setCotacao(double cotacao) {
+        this.cotacao = cotacao;
+    }
+    
     
     public void depositar(double valor) {
         double valorRipple = valor * cotacao;
@@ -40,6 +58,10 @@ public class Ripple extends Moedas implements Tarifacao {
         } else {
             System.out.println("Saldo insuficiente!");
         }
+    }
+    
+    public void atualizarCotacao(double variacao) {
+        cotacao += cotacao * variacao;
     }
     
     @Override
