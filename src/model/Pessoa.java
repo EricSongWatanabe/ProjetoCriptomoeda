@@ -9,10 +9,9 @@ package model;
  * @author eric song
  */
 public class Pessoa {
-    private String nome, cpf;
-    private int senha;
+    private String nome, cpf, senha;
 
-    public Pessoa(String nome, String cpf, int senha) {
+    public Pessoa(String nome, String cpf, String senha) {
         this.nome = nome;
         this.cpf = cpf;
         this.senha = senha;
@@ -34,11 +33,11 @@ public class Pessoa {
         this.cpf = cpf;
     }
 
-    public int getSenha() {
+    public String getSenha() {
         return senha;
     }
 
-    public void setSenha(int senha) {
+    public void setSenha(String senha) {
         this.senha = senha;
     }
 
