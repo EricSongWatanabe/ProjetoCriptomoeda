@@ -122,7 +122,7 @@ public class JanelaSenhaConsultarSaldo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void enviarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarBtnActionPerformed
-        controller.ConsultarSaldo();
+        controller.consultarSaldo();
         this.setVisible(false);
     }//GEN-LAST:event_enviarBtnActionPerformed
 

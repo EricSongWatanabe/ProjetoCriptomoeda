@@ -238,6 +238,11 @@ public class JanelaMenu extends javax.swing.JFrame {
 
         sacarBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         sacarBtn.setText("SACAR");
+        sacarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sacarBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -257,7 +262,7 @@ public class JanelaMenu extends javax.swing.JFrame {
                 .addComponent(depositarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(sacarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -368,6 +373,11 @@ public class JanelaMenu extends javax.swing.JFrame {
         JanelaSenhaDepositar sd = new JanelaSenhaDepositar(this);
         sd.setVisible(true);
     }//GEN-LAST:event_depositarBtnActionPerformed
+
+    private void sacarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sacarBtnActionPerformed
+        JanelaSenhaSacar ss = new JanelaSenhaSacar(this);
+        ss.setVisible(true);
+    }//GEN-LAST:event_sacarBtnActionPerformed
 
     /**
      * @param args the command line arguments

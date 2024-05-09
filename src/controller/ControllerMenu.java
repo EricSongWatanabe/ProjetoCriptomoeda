@@ -15,7 +15,9 @@ import view.JanelaMenu;
 import view.JanelaSenhaConsultarSaldo;
 import view.JanelaConsultarSaldo;
 import view.JanelaDepositar;
+import view.JanelaSacar;
 import view.JanelaSenhaDepositar;
+import view.JanelaSenhaSacar;
 
 /**
  *
@@ -26,6 +28,8 @@ public class ControllerMenu {
     private JanelaSenhaConsultarSaldo viewSC;
     private JanelaSenhaDepositar viewSD;
     private JanelaDepositar viewD;
+    private JanelaSenhaSacar viewSS;
+    private JanelaSacar viewS;
     private Pessoa pessoa;
 
     public ControllerMenu(JanelaMenu view, Pessoa pessoa) {
@@ -43,9 +47,25 @@ public class ControllerMenu {
         this.viewSD = viewSD;
     }
 
-    public ControllerMenu(JanelaDepositar viewD) {
+    public ControllerMenu(JanelaDepositar viewD, JanelaMenu view) {
         this.viewD = viewD;
+        this.view = view;
     }
+
+    public ControllerMenu(JanelaSenhaSacar viewSS, JanelaMenu view) {
+        this.view = view;
+        this.viewSS = viewSS;
+    }
+    
+    public ControllerMenu(JanelaSacar viewS, JanelaMenu view) {
+        this.view = view;
+        this.viewS = viewS;
+    }
+    
+    
+    
+    
+    
     
     public JanelaMenu getView() {
         return view;
@@ -63,14 +83,14 @@ public class ControllerMenu {
         this.pessoa = pessoa;
     }
     
-    public void ConsultarSaldo(){
+    public void consultarSaldo(){
         Pessoa pessoa = new Pessoa(null, view.getCpfLbl().getText(), 
                                       viewSC.getSenhaTxt().getText());   
         Conexao conexao = new Conexao();
         try{
             Connection conn = conexao.getConnection();
             PessoaDAO dao = new PessoaDAO(conn, view);
-            ResultSet res = dao.consultarSaldo(pessoa);
+            ResultSet res = dao.consultarSenha(pessoa);
             if(res.next()){
                 String nome = res.getString("nome");
                 String cpf = res.getString("cpf");
@@ -99,11 +119,11 @@ public class ControllerMenu {
         try{
             Connection conn = conexao.getConnection();
             PessoaDAO dao = new PessoaDAO(conn, view);
-            ResultSet res = dao.consultarSaldo(pessoa);
+            ResultSet res = dao.consultarSenha(pessoa);
             if(res.next()){
                 double saldoReal = res.getDouble("saldoReal");
                 JOptionPane.showMessageDialog(view, "Dados corretos!");
-                JanelaDepositar d = new JanelaDepositar(saldoReal);
+                JanelaDepositar d = new JanelaDepositar(saldoReal, view);
                 viewSD.setVisible(false);
                 d.setVisible(true);
             } else {
@@ -122,17 +142,69 @@ public class ControllerMenu {
         try{
             Connection conn = conexao.getConnection();
             PessoaDAO dao = new PessoaDAO(conn, view);
-            ResultSet res = dao.consultarSaldo(pessoa);
-            double saldoReal = res.getDouble("saldoReal");
-            String depositoString = viewD.getDepositoTxt().getText();
-            double deposito = Double.parseDouble(depositoString);
-            saldoReal = saldoReal + deposito;
-            // CONTINUAR AQUI (IR NO PESSOA DAO)
-            JanelaDepositar d = new JanelaDepositar(saldoReal);
-            viewSD.setVisible(false);
-            d.setVisible(true);
+            ResultSet res = dao.consultarSenhaPeloCpf(pessoa);
+            if(res.next()){
+                double real = res.getDouble("saldoReal");
+                String depositoString = viewD.getDepositoTxt().getText();
+                double deposito = Double.parseDouble(depositoString);
+                double saldoAtual = real + deposito;
+                dao.atualizarDeposito(pessoa, saldoAtual);
+                JOptionPane.showMessageDialog(view, "Deposito feito!");
+                JanelaDepositar d = new JanelaDepositar(real, view);
+                viewD.setVisible(false);
+                view.setVisible(true);
+            }
+        } catch (SQLException e){
+            JOptionPane.showMessageDialog(view, "Erro de conexao!");
+        }
+    }
+    
+    public void senhaSacar(){
+        Pessoa pessoa = new Pessoa(null, view.getCpfLbl().getText(), 
+                                      viewSS.getSenhaTxt().getText());   
+        Conexao conexao = new Conexao();
+        try{
+            Connection conn = conexao.getConnection();
+            PessoaDAO dao = new PessoaDAO(conn, view);
+            ResultSet res = dao.consultarSenha(pessoa);
+            if(res.next()){
+                double saldoReal = res.getDouble("saldoReal");
+                JOptionPane.showMessageDialog(view, "Dados corretos!");
+                JanelaSacar s = new JanelaSacar(saldoReal, view);
+                viewSS.setVisible(false);
+                s.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(view, "Senha incorreta");
+            }
             
-            
+        } catch (SQLException e){
+            JOptionPane.showMessageDialog(view, "Erro de conexao!");
+        }
+    }
+    
+    public void sacar(){
+        Pessoa pessoa = new Pessoa(null, view.getCpfLbl().getText(), 
+                                      null);   
+        Conexao conexao = new Conexao();
+        try{
+            Connection conn = conexao.getConnection();
+            PessoaDAO dao = new PessoaDAO(conn, view);
+            ResultSet res = dao.consultarSenhaPeloCpf(pessoa);
+            if(res.next()){
+                double real = res.getDouble("saldoReal");
+                String saqueString = viewS.getSaqueTxt().getText();
+                double deposito = Double.parseDouble(saqueString);
+                double saldoAtual = real - deposito;
+                if (saldoAtual < 0){
+                    JOptionPane.showMessageDialog(view, "Saldo insuficiente!");
+                } else {
+                    JOptionPane.showMessageDialog(view, "Saque feito!");
+                    dao.atualizarDeposito(pessoa, saldoAtual);
+                }
+                
+                viewS.setVisible(false);
+                view.setVisible(true);
+            }
         } catch (SQLException e){
             JOptionPane.showMessageDialog(view, "Erro de conexao!");
         }
