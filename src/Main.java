@@ -10,6 +10,7 @@ import model.Ethereum;
 import model.Ripple;
 import java.util.Random;
 import model.Pessoa;
+import view.JanelaMenu;
 
 
 /*

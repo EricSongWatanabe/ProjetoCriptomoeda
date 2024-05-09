@@ -160,6 +160,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="CONSULTAR SALDO"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="consultarSaldoBtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="consultarExtratoBtn">
           <Properties>
@@ -213,6 +216,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="DEPOSITAR"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="depositarBtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="sacarBtn">
           <Properties>

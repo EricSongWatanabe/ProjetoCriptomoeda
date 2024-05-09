@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author unifewatanabe
+ * @author eric song
  */
 public class JanelaCadastro extends javax.swing.JFrame {
 

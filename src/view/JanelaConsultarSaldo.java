@@ -10,17 +10,23 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author T-Gamer
+ * @author eric song
  */
 public class JanelaConsultarSaldo extends javax.swing.JFrame {
-
     /**
      * Creates new form JanelaConsultarSaldo
      */
-    public JanelaConsultarSaldo() {
+    public JanelaConsultarSaldo(String nome, String cpf, double saldoReal, 
+            double saldoBitcoin, double saldoEthereum, double saldoRipple) {
         initComponents();
+        nomeLbl.setText(nome);
+        cpfLbl.setText(cpf);
+        realLbl.setText(String.valueOf(saldoReal));
+        bitcoinLbl.setText(String.valueOf(saldoBitcoin));
+        ethereumLbl.setText(String.valueOf(saldoEthereum));
+        rippleLbl.setText(String.valueOf(saldoRipple));
     }
-
+    
     public JLabel getBitcoinLbl() {
         return bitcoinLbl;
     }

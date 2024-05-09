@@ -43,6 +43,7 @@ public class ControllerLogin {
             } else {
                 JOptionPane.showMessageDialog(view, "CPF ou senha incorreto(s)");
             }
+            
         } catch (SQLException e){
             JOptionPane.showMessageDialog(view, "Erro de conexao!");
         }

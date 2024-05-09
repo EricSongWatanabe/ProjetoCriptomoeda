@@ -190,6 +190,11 @@ public class JanelaMenu extends javax.swing.JFrame {
 
         consultarSaldoBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         consultarSaldoBtn.setText("CONSULTAR SALDO");
+        consultarSaldoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarSaldoBtnActionPerformed(evt);
+            }
+        });
 
         consultarExtratoBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         consultarExtratoBtn.setText("CONSULTAR EXTRATO");
@@ -225,6 +230,11 @@ public class JanelaMenu extends javax.swing.JFrame {
 
         depositarBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         depositarBtn.setText("DEPOSITAR");
+        depositarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                depositarBtnActionPerformed(evt);
+            }
+        });
 
         sacarBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         sacarBtn.setText("SACAR");
@@ -348,6 +358,16 @@ public class JanelaMenu extends javax.swing.JFrame {
         e.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void consultarSaldoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarSaldoBtnActionPerformed
+        JanelaSenhaConsultarSaldo sc = new JanelaSenhaConsultarSaldo(this);
+        sc.setVisible(true);
+    }//GEN-LAST:event_consultarSaldoBtnActionPerformed
+
+    private void depositarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositarBtnActionPerformed
+        JanelaSenhaDepositar sd = new JanelaSenhaDepositar(this);
+        sd.setVisible(true);
+    }//GEN-LAST:event_depositarBtnActionPerformed
 
     /**
      * @param args the command line arguments
