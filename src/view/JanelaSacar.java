@@ -5,11 +5,17 @@
 package view;
 
 import controller.ControllerMenu;
+<<<<<<< HEAD
 import controller.ControllerSacar;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import model.Investidor;
+=======
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+>>>>>>> 537e604aec26ca7a2db57475195c4768e26fce3c
 
 /**
  *
@@ -20,6 +26,7 @@ public class JanelaSacar extends javax.swing.JFrame {
     /**
      * Creates new form JanelaDepositar
      */
+<<<<<<< HEAD
     public JanelaSacar(Investidor investidor) {
         initComponents();
         saldoAtualLbl.setText(String.valueOf(investidor.getCarteira().getMoedas().get(0).getSaldo()));
@@ -34,6 +41,22 @@ public class JanelaSacar extends javax.swing.JFrame {
         this.controller = controller;
     }
     
+=======
+    public JanelaSacar(double saldoReal, JanelaMenu viewM) {
+        initComponents();
+        saldoAtualLbl.setText(String.valueOf(saldoReal));
+        controller = new ControllerMenu(this, viewM);
+    }
+
+    public ControllerMenu getController() {
+        return controller;
+    }
+
+    public void setController(ControllerMenu controller) {
+        this.controller = controller;
+    }
+
+>>>>>>> 537e604aec26ca7a2db57475195c4768e26fce3c
     public JButton getSacarBtn() {
         return sacarBtn;
     }
@@ -221,7 +244,11 @@ public class JanelaSacar extends javax.swing.JFrame {
 //        });
 //    }
     
+<<<<<<< HEAD
     private ControllerSacar controller;
+=======
+    private ControllerMenu controller;
+>>>>>>> 537e604aec26ca7a2db57475195c4768e26fce3c
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton sacarBtn;
     private javax.swing.JLabel sacarLbl;

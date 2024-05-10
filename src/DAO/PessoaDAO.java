@@ -73,7 +73,7 @@ public class PessoaDAO {
         conn.close();
     }
     
-    public ResultSet consultarSaldo(Pessoa pessoa) throws SQLException {
+    public ResultSet consultarSenha(Pessoa pessoa) throws SQLException {
         String sql = "SELECT * FROM pessoa WHERE cpf = ? AND senha = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, viewJ.getCpfLbl().getText());
@@ -83,28 +83,24 @@ public class PessoaDAO {
         return resultado;
     }
     
-    public void inserirDeposito(Pessoa pessoa) throws SQLException{
-//        ResultSet resultSet = conn.createStatement().executeQuery("SELECT MAX(id) FROM pessoa");;
-//        int ultimoId = 0;
-//        if (resultSet.next()) {
-//            ultimoId = resultSet.getInt(1);
-//        }
-//
-//        int novoId = ultimoId + 1;
-//
-//        String sql = "insert into pessoa(id, nome, cpf, senha, \"saldoReal\", "
-//                + "\"saldoBitcoin\", \"saldoEthereum\", \"saldoRipple\") values "
-//                + "(" + novoId + ", ?, ?, ?, 0.0, 0.0, 0.0, 0.0)";
-//        PreparedStatement statement = conn.prepareStatement(sql);
-//        statement.setString(1, pessoa.getNome());
-//        statement.setString(2, pessoa.getCpf());
-//        statement.setString(3, pessoa.getSenha());
-//
-//
-//        statement.execute();
-//        conn.close();
+    public ResultSet consultarSenhaPeloCpf(Pessoa pessoa) throws SQLException {
+        String sql = "SELECT * FROM pessoa WHERE cpf = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, viewJ.getCpfLbl().getText());
+        statement.execute();
+        ResultSet resultado = statement.getResultSet();
+        return resultado;
     }
-
+    
+    public void atualizarDeposito(Pessoa pessoa, double saldoAtual) throws SQLException {
+        String sql = "update pessoa set \"saldoReal\" = ? where cpf = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setDouble(1, saldoAtual);
+        statement.setString(2, viewJ.getCpfLbl().getText());
+        statement.executeUpdate();
+        statement.execute();
+        conn.close();
+    }
 
     
 //    public void excluir(Aluno aluno) throws SQLException {
