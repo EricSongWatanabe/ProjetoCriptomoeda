@@ -4,7 +4,7 @@
  */
 package view;
 
-import controller.ControllerMenu;
+import controller.ControllerSenhaConsultarSaldo;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -20,14 +20,14 @@ public class JanelaSenhaConsultarSaldo extends javax.swing.JFrame {
      */
     public JanelaSenhaConsultarSaldo(JanelaMenu viewM) {
         initComponents();
-        controller = new ControllerMenu(this, viewM);        
+        controller = new ControllerSenhaConsultarSaldo(viewM, this);     
     }
 
-    public ControllerMenu getController() {
+    public ControllerSenhaConsultarSaldo getController() {
         return controller;
     }
 
-    public void setController(ControllerMenu controller) {
+    public void setController(ControllerSenhaConsultarSaldo controller) {
         this.controller = controller;
     }
 
@@ -122,7 +122,7 @@ public class JanelaSenhaConsultarSaldo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void enviarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarBtnActionPerformed
-        controller.ConsultarSaldo();
+        controller.consultarSaldo();
         this.setVisible(false);
     }//GEN-LAST:event_enviarBtnActionPerformed
 
@@ -164,7 +164,7 @@ public class JanelaSenhaConsultarSaldo extends javax.swing.JFrame {
 //            }
 //        });
 //    }
-    private ControllerMenu controller;
+    private ControllerSenhaConsultarSaldo controller;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton enviarBtn;
     private javax.swing.JLabel senhaLbl;

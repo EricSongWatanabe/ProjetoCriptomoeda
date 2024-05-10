@@ -4,7 +4,7 @@
  */
 package view;
 
-import controller.ControllerMenu;
+import controller.ControllerSenhaDepositar;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -20,16 +20,9 @@ public class JanelaSenhaDepositar extends javax.swing.JFrame {
      */
     public JanelaSenhaDepositar(JanelaMenu viewM) {
         initComponents();
-        controller = new ControllerMenu(this, viewM);
+        controller = new ControllerSenhaDepositar(viewM, this);
     }
-
-    public ControllerMenu getController() {
-        return controller;
-    }
-
-    public void setController(ControllerMenu controller) {
-        this.controller = controller;
-    }
+    
 
     public JButton getEnviarBtn() {
         return enviarBtn;
@@ -122,7 +115,7 @@ public class JanelaSenhaDepositar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void enviarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarBtnActionPerformed
-        controller.senhaDepositar();
+        controller.consultarSenha();
     }//GEN-LAST:event_enviarBtnActionPerformed
 
     private void senhaTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaTxtActionPerformed
@@ -163,7 +156,7 @@ public class JanelaSenhaDepositar extends javax.swing.JFrame {
 //            }
 //        });
 //    }
-    private ControllerMenu controller;
+    private ControllerSenhaDepositar controller;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton enviarBtn;
     private javax.swing.JLabel senhaLbl;

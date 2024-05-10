@@ -5,12 +5,12 @@
 package controller;
 
 import DAO.Conexao;
-import DAO.PessoaDAO;
+import DAO.InvestidorDAO;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import model.Pessoa;
+import model.Investidor;
 import view.JanelaLogin;
 import view.JanelaMenu;
 
@@ -26,19 +26,19 @@ public class ControllerLogin {
     }
     
     public void logar(){
-        Pessoa pessoa = new Pessoa(null, view.getCpfTxt().getText(), 
-                                      view.getSenhaTxt().getText());   
+        Investidor investidor = new Investidor(null, null, view.getCpfTxt().getText(),
+                                      view.getSenhaTxt().getText()); 
         Conexao conexao = new Conexao();
         try{
             Connection conn = conexao.getConnection();
-            PessoaDAO dao = new PessoaDAO(conn);
-            ResultSet res = dao.consultar(pessoa);
+            InvestidorDAO dao = new InvestidorDAO(conn);
+            ResultSet res = dao.consultar(investidor);
             if(res.next()){
                 JOptionPane.showMessageDialog(view, "Login feito!");
                 String nome = res.getString("nome");
                 String cpf = res.getString("cpf");
-                JanelaMenu viewMenu = new JanelaMenu(new Pessoa(nome,cpf,null));
-                viewMenu.setVisible(true);
+                JanelaMenu m = new JanelaMenu(new Investidor(null,nome,cpf,null));
+                m.setVisible(true);
                 view.setVisible(false);
             } else {
                 JOptionPane.showMessageDialog(view, "CPF ou senha incorreto(s)");

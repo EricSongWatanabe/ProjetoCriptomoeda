@@ -4,13 +4,21 @@
  */
 package controller;
 
-import DAO.PessoaDAO;
+import DAO.InvestidorDAO;
 import DAO.Conexao;
 import model.Pessoa;
 import view.JanelaCadastro;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import model.Bitcoin;
+import model.Carteira;
+import model.Ethereum;
+import model.Investidor;
+import model.Moedas;
+import model.Real;
+import model.Ripple;
 
 /**
  *
@@ -28,13 +36,13 @@ public class ControllerCadastro {
         String cpf = view.getCpfTxt().getText();
         String senha = view.getSenhaTxt().getText();
         
-        Pessoa pessoa = new Pessoa(nome, cpf, senha);
+        Investidor investidor = new Investidor(nome, cpf, senha);
         Conexao conexao = new Conexao();
         
         try{
             Connection conn = conexao.getConnection();
-            PessoaDAO dao = new PessoaDAO(conn);
-            dao.inserir(pessoa);
+            InvestidorDAO dao = new InvestidorDAO(conn);
+            dao.inserir(investidor);
             JOptionPane.showMessageDialog(view, "Pessoa Cadastrada!");
         } catch (SQLException e){
             JOptionPane.showMessageDialog(view, "Pessoa nao Cadastrada!");

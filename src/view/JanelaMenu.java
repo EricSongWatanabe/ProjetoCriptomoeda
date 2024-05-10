@@ -8,7 +8,7 @@ import controller.ControllerMenu;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import model.Pessoa;
+import model.Investidor;
 
 /**
  *
@@ -19,16 +19,15 @@ public class JanelaMenu extends javax.swing.JFrame {
     /**
      * Creates new form JanelaMenu
      */
-    public JanelaMenu(Pessoa pessoa) {
+    public JanelaMenu(Investidor investidor) {
         initComponents();
-        nomeLbl.setText(pessoa.getNome());
-        cpfLbl.setText(pessoa.getCpf());
-        controller = new ControllerMenu(this, pessoa);
+        nomeLbl.setText(investidor.getNome());
+        cpfLbl.setText(investidor.getCpf());
+        controller = new ControllerMenu(investidor, this);
     }
 
     public JanelaMenu() {
     }
-    
     
 
     public ControllerMenu getController() {
@@ -88,11 +87,11 @@ public class JanelaMenu extends javax.swing.JFrame {
     }
 
     public JButton getjButton1() {
-        return jButton1;
+        return sairBtn;
     }
 
     public void setjButton1(JButton jButton1) {
-        this.jButton1 = jButton1;
+        this.sairBtn = jButton1;
     }
 
     public JPanel getjPanel1() {
@@ -156,7 +155,7 @@ public class JanelaMenu extends javax.swing.JFrame {
 
         nomeLbl = new javax.swing.JLabel();
         cpfLbl = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        sairBtn = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         consultarSaldoBtn = new javax.swing.JButton();
         consultarExtratoBtn = new javax.swing.JButton();
@@ -178,11 +177,11 @@ public class JanelaMenu extends javax.swing.JFrame {
         cpfLbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cpfLbl.setText("CPF");
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText("SAIR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        sairBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        sairBtn.setText("SAIR");
+        sairBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                sairBtnActionPerformed(evt);
             }
         });
 
@@ -238,6 +237,11 @@ public class JanelaMenu extends javax.swing.JFrame {
 
         sacarBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         sacarBtn.setText("SACAR");
+        sacarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sacarBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -257,7 +261,7 @@ public class JanelaMenu extends javax.swing.JFrame {
                 .addComponent(depositarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(sacarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -312,7 +316,7 @@ public class JanelaMenu extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(sairBtn, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -346,18 +350,18 @@ public class JanelaMenu extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sairBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void sairBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairBtnActionPerformed
         JanelaEntrada e = new JanelaEntrada();
         e.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_sairBtnActionPerformed
 
     private void consultarSaldoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarSaldoBtnActionPerformed
         JanelaSenhaConsultarSaldo sc = new JanelaSenhaConsultarSaldo(this);
@@ -368,6 +372,11 @@ public class JanelaMenu extends javax.swing.JFrame {
         JanelaSenhaDepositar sd = new JanelaSenhaDepositar(this);
         sd.setVisible(true);
     }//GEN-LAST:event_depositarBtnActionPerformed
+
+    private void sacarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sacarBtnActionPerformed
+        JanelaSenhaSacar ss = new JanelaSenhaSacar(this);
+        ss.setVisible(true);
+    }//GEN-LAST:event_sacarBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -413,13 +422,13 @@ public class JanelaMenu extends javax.swing.JFrame {
     private javax.swing.JLabel cpfLbl;
     private javax.swing.JLabel cpfLbl1;
     private javax.swing.JButton depositarBtn;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel nomeLbl;
     private javax.swing.JLabel nomeLbl1;
     private javax.swing.JButton sacarBtn;
+    private javax.swing.JButton sairBtn;
     private javax.swing.JButton venderCriptoBtn;
     // End of variables declaration//GEN-END:variables
 }

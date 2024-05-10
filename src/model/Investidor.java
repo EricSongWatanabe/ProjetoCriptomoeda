@@ -15,7 +15,12 @@ public class Investidor extends Pessoa{
         super(nome, cpf, senha);
         this.carteira = carteira;
     }
-
+  
+    public Investidor(String nome, String cpf, String senha) {
+        super(nome, cpf, senha);
+        this.carteira = new Carteira();
+    }
+    
     public Carteira getCarteira() {
         return carteira;
     }
@@ -24,4 +29,5 @@ public class Investidor extends Pessoa{
         this.carteira = carteira;
     }
    
+    
 }

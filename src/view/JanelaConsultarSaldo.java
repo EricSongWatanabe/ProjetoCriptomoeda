@@ -7,6 +7,7 @@ package view;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import model.Investidor;
 
 /**
  *
@@ -16,15 +17,14 @@ public class JanelaConsultarSaldo extends javax.swing.JFrame {
     /**
      * Creates new form JanelaConsultarSaldo
      */
-    public JanelaConsultarSaldo(String nome, String cpf, double saldoReal, 
-            double saldoBitcoin, double saldoEthereum, double saldoRipple) {
+    public JanelaConsultarSaldo(Investidor investidor) {
         initComponents();
-        nomeLbl.setText(nome);
-        cpfLbl.setText(cpf);
-        realLbl.setText(String.valueOf(saldoReal));
-        bitcoinLbl.setText(String.valueOf(saldoBitcoin));
-        ethereumLbl.setText(String.valueOf(saldoEthereum));
-        rippleLbl.setText(String.valueOf(saldoRipple));
+        nomeLbl.setText(investidor.getNome());
+        cpfLbl.setText(investidor.getCpf());
+        realLbl.setText(String.valueOf(investidor.getCarteira().getMoedas().get(0).getSaldo()));
+        bitcoinLbl.setText(String.valueOf(investidor.getCarteira().getMoedas().get(1).getSaldo()));
+        ethereumLbl.setText(String.valueOf(investidor.getCarteira().getMoedas().get(2).getSaldo()));
+        rippleLbl.setText(String.valueOf(investidor.getCarteira().getMoedas().get(3).getSaldo()));
     }
     
     public JLabel getBitcoinLbl() {

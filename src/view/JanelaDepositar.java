@@ -4,10 +4,12 @@
  */
 package view;
 
+import controller.ControllerDepositar;
 import controller.ControllerMenu;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import model.Investidor;
 
 /**
  *
@@ -18,17 +20,17 @@ public class JanelaDepositar extends javax.swing.JFrame {
     /**
      * Creates new form JanelaDepositar
      */
-    public JanelaDepositar(double saldoReal) {
+    public JanelaDepositar(Investidor investidor) {
         initComponents();
-        saldoAtualLbl.setText(String.valueOf(saldoReal));
-        controller = new ControllerMenu(this);
+        saldoAtualLbl.setText(String.valueOf(investidor.getCarteira().getMoedas().get(0).getSaldo()));
+        controller = new ControllerDepositar(this, investidor);
     }
 
-    public ControllerMenu getController() {
+    public ControllerDepositar getController() {
         return controller;
     }
 
-    public void setController(ControllerMenu controller) {
+    public void setController(ControllerDepositar controller) {
         this.controller = controller;
     }
 
@@ -217,7 +219,7 @@ public class JanelaDepositar extends javax.swing.JFrame {
 //        });
 //    }
     
-    private ControllerMenu controller;
+    private ControllerDepositar controller;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton depositarBtn;
     private javax.swing.JLabel depositarLbl;

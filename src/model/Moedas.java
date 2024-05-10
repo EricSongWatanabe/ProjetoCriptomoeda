@@ -12,7 +12,7 @@ public class Moedas {
     private double saldo;
 
     public Moedas() {
-        
+        saldo = 0;
     }
 
     public Moedas(double saldo) {

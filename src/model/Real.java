@@ -14,19 +14,9 @@ public class Real extends Moedas implements Tarifacao {
     }
 
     public Real() {
+        
     }
     
-    public void depositar(double valor) {
-        setSaldo(getSaldo() + valor);
-    }
-
-    public void sacar(double valor) {
-        if (valor <= getSaldo()) {
-            setSaldo(getSaldo() - valor);
-        } else {
-            System.out.println("Saldo insuficiente!");
-        }
-    }
     
     @Override
     public double getTaxaCompra() {
