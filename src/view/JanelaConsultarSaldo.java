@@ -21,7 +21,11 @@ public class JanelaConsultarSaldo extends javax.swing.JFrame {
         initComponents();
         nomeLbl.setText(investidor.getNome());
         cpfLbl.setText(investidor.getCpf());
-        realLbl.setText(String.valueOf(investidor.getCarteira().getMoedas().get(0).getSaldo()));
+        
+        double saldoReal = investidor.getCarteira().getMoedas().get(0).getSaldo();
+        String saldoRealFormatado = String.format("%.2f", saldoReal);
+        realLbl.setText(saldoRealFormatado);
+        
         bitcoinLbl.setText(String.valueOf(investidor.getCarteira().getMoedas().get(1).getSaldo()));
         ethereumLbl.setText(String.valueOf(investidor.getCarteira().getMoedas().get(2).getSaldo()));
         rippleLbl.setText(String.valueOf(investidor.getCarteira().getMoedas().get(3).getSaldo()));

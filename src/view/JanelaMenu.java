@@ -268,12 +268,22 @@ public class JanelaMenu extends javax.swing.JFrame {
 
         comprarCriptoBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         comprarCriptoBtn.setText("COMPRAR CRIPTOMOEDA");
+        comprarCriptoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comprarCriptoBtnActionPerformed(evt);
+            }
+        });
 
         venderCriptoBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         venderCriptoBtn.setText("VENDER CRIPTOMOEDA");
 
         atualizarBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         atualizarBtn.setText("ATUALIZAR COTAÇÃO");
+        atualizarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atualizarBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -377,6 +387,15 @@ public class JanelaMenu extends javax.swing.JFrame {
         JanelaSenhaSacar ss = new JanelaSenhaSacar(this);
         ss.setVisible(true);
     }//GEN-LAST:event_sacarBtnActionPerformed
+
+    private void comprarCriptoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comprarCriptoBtnActionPerformed
+        JanelaSenhaComprarCripto cc = new JanelaSenhaComprarCripto(this);
+        cc.setVisible(true);
+    }//GEN-LAST:event_comprarCriptoBtnActionPerformed
+
+    private void atualizarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarBtnActionPerformed
+        controller.atualizarCotacao();
+    }//GEN-LAST:event_atualizarBtnActionPerformed
 
     /**
      * @param args the command line arguments

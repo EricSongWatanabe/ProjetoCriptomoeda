@@ -32,7 +32,7 @@ public class ControllerLogin {
         try{
             Connection conn = conexao.getConnection();
             InvestidorDAO dao = new InvestidorDAO(conn);
-            ResultSet res = dao.consultar(investidor);
+            ResultSet res = dao.consultarSenha(investidor);
             if(res.next()){
                 JOptionPane.showMessageDialog(view, "Login feito!");
                 String nome = res.getString("nome");

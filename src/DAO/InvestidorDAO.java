@@ -28,17 +28,6 @@ public class InvestidorDAO {
         this.conn = conn;
     }
     
-    public ResultSet consultar(Investidor investidor) throws SQLException{
-        String sql = "select * from pessoa where cpf = ? and senha = ?";
-        
-        PreparedStatement statement = conn.prepareStatement(sql);
-        statement.setString(1, investidor.getCpf());
-        statement.setString(2, investidor.getSenha());
-        statement.execute();
-        ResultSet resultado = statement.getResultSet();
-        return resultado;
-    }
-    
     public ResultSet consultarSenha(Investidor investidor) throws SQLException{
         String sql = "select * from pessoa where cpf = ? and senha = ?";
         
@@ -49,6 +38,18 @@ public class InvestidorDAO {
         ResultSet resultado = statement.getResultSet();
         return resultado;
     }
+    
+    public ResultSet consultarCpf(String cpf) throws SQLException{
+        String sql = "select * from pessoa where cpf = ?";
+        
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, cpf);
+        statement.execute();
+        ResultSet resultado = statement.getResultSet();
+        return resultado;
+    }
+    
+    
     
     public ResultSet senha(Investidor investidor) throws SQLException{
         String sql = "select * from pessoa where senha = ?";
@@ -81,8 +82,9 @@ public class InvestidorDAO {
         int novoId = ultimoId + 1;
 
         String sql1 = "INSERT INTO pessoa(id, nome, cpf, senha, \"saldoReal\", "
-                + "\"saldoBitcoin\", \"saldoEthereum\", \"saldoRipple\") VALUES "
-                + "(?, ?, ?, ?, ?, ?, ?, ?)";
+                + "\"saldoBitcoin\", \"saldoEthereum\", \"saldoRipple\", "
+                + "\"cotacaoBitcoin\", \"cotacaoEthereum\", \"cotacaoRipple\") "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement statement = conn.prepareStatement(sql1);
         statement.setInt(1, novoId);
         statement.setString(2, investidor.getNome());
@@ -92,6 +94,9 @@ public class InvestidorDAO {
         statement.setDouble(6, investidor.getCarteira().getMoedas().get(1).getSaldo());
         statement.setDouble(7, investidor.getCarteira().getMoedas().get(2).getSaldo());
         statement.setDouble(8, investidor.getCarteira().getMoedas().get(3).getSaldo());
+        statement.setDouble(9, investidor.getCarteira().getMoedas().get(1).getCotacao());
+        statement.setDouble(10, investidor.getCarteira().getMoedas().get(2).getCotacao());
+        statement.setDouble(11, investidor.getCarteira().getMoedas().get(3).getCotacao());
 
         statement.execute();
         conn.close();
@@ -116,6 +121,15 @@ public class InvestidorDAO {
         statement.executeUpdate();
         statement.execute();
         conn.close();
+    }
+    
+    public void atualizarCotacoes(Investidor investidor) throws SQLException {
+        String sql = "UPDATE pessoa SET \"cotacaoBitcoin\" = ?, \"cotacaoEthereum\" = ?, \"cotacaoRipple\" = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setDouble(1, investidor.getCarteira().getMoedas().get(1).getCotacao());
+        statement.setDouble(2, investidor.getCarteira().getMoedas().get(2).getCotacao());
+        statement.setDouble(3, investidor.getCarteira().getMoedas().get(3).getCotacao());
+        statement.executeUpdate();
     }
     
 //    public void extratoDeposito(Investidor investidor, int id, double deposito) throws SQLException {

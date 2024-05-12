@@ -16,9 +16,9 @@ public class Carteira {
     public Carteira() {
         moedas  = new ArrayList<Moedas>();
         moedas.add(new Real(0, 0));
-        moedas.add(new Bitcoin(0, 0.0000031));
-        moedas.add(new Ethereum(0, 0.000060));
-        moedas.add(new Ripple(0, 0.38121));
+        moedas.add(new Bitcoin(0, 316107.20));
+        moedas.add(new Ethereum(0, 15074.56));
+        moedas.add(new Ripple(0, 2.58));
     }
 
     public Carteira(ArrayList<Moedas> moedas) {
