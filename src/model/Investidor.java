@@ -11,7 +11,7 @@ package model;
 public class Investidor extends Pessoa{
    private Carteira carteira;
 
-    public Investidor(Carteira carteira, String nome, String cpf, String senha) {
+    public Investidor(Carteira carteira, String nome, String cpf, String senha){
         super(nome, cpf, senha);
         this.carteira = carteira;
     }
@@ -27,6 +27,11 @@ public class Investidor extends Pessoa{
 
     public void setCarteira(Carteira carteira) {
         this.carteira = carteira;
+    }
+
+    @Override
+    public String toString() {
+        return "Investidor{" + "carteira=" + carteira + '}';
     }
    
     

@@ -205,10 +205,7 @@ public class JanelaCadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cadastrarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarBtnActionPerformed
-        controller.cadastrar();
-        JanelaLogin l = new JanelaLogin();
-        l.setVisible(true);
-        this.setVisible(false);
+        controller.cadastrar();        
     }//GEN-LAST:event_cadastrarBtnActionPerformed
 
     private void voltarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarBtnActionPerformed

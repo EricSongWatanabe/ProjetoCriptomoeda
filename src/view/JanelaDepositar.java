@@ -20,17 +20,10 @@ public class JanelaDepositar extends javax.swing.JFrame {
     /**
      * Creates new form JanelaDepositar
      */
-<<<<<<< HEAD
     public JanelaDepositar(Investidor investidor) {
         initComponents();
         saldoAtualLbl.setText(String.valueOf(investidor.getCarteira().getMoedas().get(0).getSaldo()));
         controller = new ControllerDepositar(this, investidor);
-=======
-    public JanelaDepositar(double saldoReal, JanelaMenu viewM) {
-        initComponents();
-        saldoAtualLbl.setText(String.valueOf(saldoReal));
-        controller = new ControllerMenu(this, viewM);
->>>>>>> 537e604aec26ca7a2db57475195c4768e26fce3c
     }
 
     public ControllerDepositar getController() {

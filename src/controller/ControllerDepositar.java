@@ -8,12 +8,9 @@ import DAO.Conexao;
 import DAO.InvestidorDAO;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import model.Bitcoin;
 import model.Investidor;
-import model.Moedas;
-import model.Real;
+import view.JanelaConsultarSaldo;
 import view.JanelaDepositar;
 
 /**
@@ -43,6 +40,8 @@ public class ControllerDepositar {
             InvestidorDAO dao = new InvestidorDAO(conn);
             dao.atualizarDeposito(investidor);
             JOptionPane.showMessageDialog(view, "Deposito realizado!");
+            JanelaConsultarSaldo c = new JanelaConsultarSaldo(investidor);
+            c.setVisible(true);
             view.setVisible(false);
         } catch (SQLException e){
             JOptionPane.showMessageDialog(view, "Erro ao depositar!");

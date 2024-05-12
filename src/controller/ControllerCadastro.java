@@ -19,6 +19,7 @@ import model.Investidor;
 import model.Moedas;
 import model.Real;
 import model.Ripple;
+import view.JanelaLogin;
 
 /**
  *
@@ -31,21 +32,47 @@ public class ControllerCadastro {
         this.view = view;
     }
     
-    public void cadastrar(){
+    public void cadastrar() {
         String nome = view.getNomeTxt().getText();
         String cpf = view.getCpfTxt().getText();
         String senha = view.getSenhaTxt().getText();
-        
-        Investidor investidor = new Investidor(nome, cpf, senha);
-        Conexao conexao = new Conexao();
-        
-        try{
-            Connection conn = conexao.getConnection();
-            InvestidorDAO dao = new InvestidorDAO(conn);
-            dao.inserir(investidor);
-            JOptionPane.showMessageDialog(view, "Pessoa Cadastrada!");
-        } catch (SQLException e){
-            JOptionPane.showMessageDialog(view, "Pessoa nao Cadastrada!");
+
+        try {
+            validarCPF(cpf);
+            validarSenha(senha);
+
+            Investidor investidor = new Investidor(nome, cpf, senha);
+            Conexao conexao = new Conexao();
+
+            try {
+                Connection conn = conexao.getConnection();
+                InvestidorDAO dao = new InvestidorDAO(conn);
+                dao.inserir(investidor);
+                JOptionPane.showMessageDialog(view, "Pessoa Cadastrada!");
+                view.setVisible(false);
+                JanelaLogin l = new JanelaLogin();
+                l.setVisible(true);
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(view, "Pessoa nao Cadastrada!");
+            }
+        } catch (CPFInvalidoException | SenhaInvalidaException e) {
+            JOptionPane.showMessageDialog(view, e.getMessage());
         }
     }
+
+    private void validarCPF(String cpf) throws CPFInvalidoException {
+        if (!cpf.matches("\\d{11}")) {
+            throw new CPFInvalidoException("O CPF deve ter exatamente 11 dígitos numéricos.");
+        }
+    }
+
+    private void validarSenha(String senha) throws SenhaInvalidaException {
+        if (!senha.matches("\\d{6}")) {
+            throw new SenhaInvalidaException("A senha deve ter exatamente 6 dígitos numéricos.");
+        }
+    }
+
+
+
+
 }

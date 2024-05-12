@@ -27,6 +27,8 @@ public class JanelaConsultarSaldo extends javax.swing.JFrame {
         rippleLbl.setText(String.valueOf(investidor.getCarteira().getMoedas().get(3).getSaldo()));
     }
     
+    
+    
     public JLabel getBitcoinLbl() {
         return bitcoinLbl;
     }

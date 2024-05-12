@@ -4,12 +4,8 @@
  */
 package view;
 
-<<<<<<< HEAD
 
 import controller.ControllerSenhaSacar;
-=======
-import controller.ControllerMenu;
->>>>>>> 537e604aec26ca7a2db57475195c4768e26fce3c
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -25,7 +21,6 @@ public class JanelaSenhaSacar extends javax.swing.JFrame {
      */
     public JanelaSenhaSacar(JanelaMenu viewM) {
         initComponents();
-<<<<<<< HEAD
         controller = new ControllerSenhaSacar(this, viewM);
     }
 
@@ -34,16 +29,6 @@ public class JanelaSenhaSacar extends javax.swing.JFrame {
     }
 
     public void setController(ControllerSenhaSacar controller) {
-=======
-        controller = new ControllerMenu(this, viewM);
-    }
-
-    public ControllerMenu getController() {
-        return controller;
-    }
-
-    public void setController(ControllerMenu controller) {
->>>>>>> 537e604aec26ca7a2db57475195c4768e26fce3c
         this.controller = controller;
     }
 
@@ -138,11 +123,7 @@ public class JanelaSenhaSacar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void enviarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarBtnActionPerformed
-<<<<<<< HEAD
         controller.consultarSenha();
-=======
-        controller.senhaSacar();
->>>>>>> 537e604aec26ca7a2db57475195c4768e26fce3c
     }//GEN-LAST:event_enviarBtnActionPerformed
 
     private void senhaTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaTxtActionPerformed
@@ -183,11 +164,7 @@ public class JanelaSenhaSacar extends javax.swing.JFrame {
 //            }
 //        });
 //    }
-<<<<<<< HEAD
     private ControllerSenhaSacar controller;
-=======
-    private ControllerMenu controller;
->>>>>>> 537e604aec26ca7a2db57475195c4768e26fce3c
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton enviarBtn;
     private javax.swing.JLabel senhaLbl;

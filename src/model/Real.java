@@ -9,14 +9,13 @@ package model;
  * @author eric song
  */
 public class Real extends Moedas implements Tarifacao {
+    public Real(double saldo, double cotacao) {
+        super(saldo, cotacao);
+    }
+    
     public Real(double saldo) {
         super(saldo);
     }
-
-    public Real() {
-        
-    }
-    
     
     @Override
     public double getTaxaCompra() {

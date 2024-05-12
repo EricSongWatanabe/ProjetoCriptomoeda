@@ -9,22 +9,12 @@ package model;
  * @author eric song
  */
 public class Bitcoin extends Moedas implements Tarifacao {
-    private double cotacao;
+    public Bitcoin(double saldo, double cotacao) {
+        super(saldo, cotacao);
+    }
+
     public Bitcoin(double saldo) {
         super(saldo);
-        this.cotacao = 0.0000031;
-    }
-
-    public Bitcoin() {
-        this.cotacao = 0.0000031;
-    }
-
-    public double getCotacao() {
-        return cotacao;
-    }
-
-    public void setCotacao(double cotacao) {
-        this.cotacao = cotacao;
     }
     
     @Override

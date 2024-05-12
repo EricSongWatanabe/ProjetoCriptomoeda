@@ -9,22 +9,12 @@ package model;
  * @author eric song
  */
 public class Ripple extends Moedas implements Tarifacao {
-    private double cotacao;
+    public Ripple(double saldo, double cotacao) {
+        super(saldo, cotacao);
+    }
+    
     public Ripple(double saldo) {
         super(saldo);
-        this.cotacao = 0.38121;
-    }
-    
-    public Ripple() {
-        this.cotacao = 0.38121;
-    }
-    
-    public double getCotacao() {
-        return cotacao;
-    }
-
-    public void setCotacao(double cotacao) {
-        this.cotacao = cotacao;
     }
     
     @Override

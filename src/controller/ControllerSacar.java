@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import model.Investidor;
+import view.JanelaConsultarSaldo;
 import view.JanelaSacar;
 
 /**
@@ -43,6 +44,8 @@ public class ControllerSacar {
             Connection conn = conexao.getConnection();
             InvestidorDAO dao = new InvestidorDAO(conn);
             dao.atualizarSaque(investidor);
+            JanelaConsultarSaldo c = new JanelaConsultarSaldo(investidor);
+            c.setVisible(true);
             view.setVisible(false);
         } catch (SQLException e){
             JOptionPane.showMessageDialog(view, "Erro ao sacar!");

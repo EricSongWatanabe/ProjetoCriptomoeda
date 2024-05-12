@@ -10,21 +10,12 @@ package model;
  */
 public class Ethereum extends Moedas implements Tarifacao {
     private double cotacao;
-    public Ethereum(double saldo) {
-        super(saldo);
-        this.cotacao = 0.000060;
+    public Ethereum(double saldo, double cotacao) {
+        super(saldo, cotacao);
     }
     
-    public Ethereum() {
-        this.cotacao = 0.000060;
-    }
-
-    public double getCotacao() {
-        return cotacao;
-    }
-
-    public void setCotacao(double cotacao) {
-        this.cotacao = cotacao;
+    public Ethereum(double saldo) {
+        super(saldo);
     }
     
     @Override

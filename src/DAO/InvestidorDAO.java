@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import model.Investidor;
-import model.Pessoa;
 import view.JanelaMenu;
 
 /*
@@ -62,7 +61,18 @@ public class InvestidorDAO {
     }
 
     public void inserir(Investidor investidor) throws SQLException {
-        ResultSet resultSet = conn.createStatement().executeQuery("SELECT MAX(id) FROM pessoa");;
+        String sql = "SELECT COUNT(*) FROM pessoa WHERE cpf = ?";
+        PreparedStatement statementVerificarCPF = conn.prepareStatement(sql);
+        statementVerificarCPF.setString(1, investidor.getCpf());
+        ResultSet resultadoVerificarCPF = statementVerificarCPF.executeQuery();
+        resultadoVerificarCPF.next();
+        int contador = resultadoVerificarCPF.getInt(1);
+        
+        if (contador > 0) {
+            throw new SQLException("CPF já cadastrado.");
+        }
+        
+        ResultSet resultSet = conn.createStatement().executeQuery("SELECT MAX(id) FROM pessoa");
         int ultimoId = 0;
         if (resultSet.next()) {
             ultimoId = resultSet.getInt(1);
@@ -70,21 +80,23 @@ public class InvestidorDAO {
 
         int novoId = ultimoId + 1;
 
-        String sql = "insert into pessoa(id, nome, cpf, senha, \"saldoReal\", "
-                + "\"saldoBitcoin\", \"saldoEthereum\", \"saldoRipple\") values "
-                + "(" + novoId + ", ?, ?, ?, ?, ?, ?, ?)";
-        PreparedStatement statement = conn.prepareStatement(sql);
-        statement.setString(1, investidor.getNome());
-        statement.setString(2, investidor.getCpf());
-        statement.setString(3, investidor.getSenha());
-        statement.setDouble(4, investidor.getCarteira().getMoedas().get(0).getSaldo());
-        statement.setDouble(5, investidor.getCarteira().getMoedas().get(1).getSaldo());
-        statement.setDouble(6, investidor.getCarteira().getMoedas().get(2).getSaldo());
-        statement.setDouble(7, investidor.getCarteira().getMoedas().get(3).getSaldo());
+        String sql1 = "INSERT INTO pessoa(id, nome, cpf, senha, \"saldoReal\", "
+                + "\"saldoBitcoin\", \"saldoEthereum\", \"saldoRipple\") VALUES "
+                + "(?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement statement = conn.prepareStatement(sql1);
+        statement.setInt(1, novoId);
+        statement.setString(2, investidor.getNome());
+        statement.setString(3, investidor.getCpf());
+        statement.setString(4, investidor.getSenha());
+        statement.setDouble(5, investidor.getCarteira().getMoedas().get(0).getSaldo());
+        statement.setDouble(6, investidor.getCarteira().getMoedas().get(1).getSaldo());
+        statement.setDouble(7, investidor.getCarteira().getMoedas().get(2).getSaldo());
+        statement.setDouble(8, investidor.getCarteira().getMoedas().get(3).getSaldo());
 
         statement.execute();
         conn.close();
     }
+
     
     public void atualizarDeposito(Investidor investidor) throws SQLException {
         String sql = "update pessoa set \"saldoReal\" = ? where cpf = ?";
@@ -105,6 +117,38 @@ public class InvestidorDAO {
         statement.execute();
         conn.close();
     }
+    
+//    public void extratoDeposito(Investidor investidor, int id, double deposito) throws SQLException {
+//        ResultSet resultSet = conn.createStatement().executeQuery("SELECT MAX(id_log) FROM log");
+//        int ultimoId = 0;
+//        if (resultSet.next()) {
+//            ultimoId = resultSet.getInt(1);
+//        }
+//
+//        int novoId = ultimoId + 1;
+//        System.out.println(novoId);
+//        System.out.println(investidor.getCarteira().getMoedas().get(0).getCotacao());
+//        String sql = "INSERT INTO log(id_log, id_inv, tipo, valor, cotacao, taxa,"
+//                + " \"saldoRealLog\", \"saldoBitcoinLog\", \"saldoEthereumLog\","
+//                + " \"saldoRippleLog\", moeda) values "
+//                + "(" + novoId +" ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+//        PreparedStatement statement = conn.prepareStatement(sql);
+//        statement.setInt(1, id);
+//        statement.setString(2, "+");
+//        statement.setDouble(3, deposito);
+//        statement.setDouble(4, investidor.getCarteira().getMoedas().get(0).getCotacao());
+//        statement.setDouble(5, 0.0);
+//        statement.setDouble(6, investidor.getCarteira().getMoedas().get(0).getSaldo());
+//        statement.setDouble(7, investidor.getCarteira().getMoedas().get(1).getSaldo());
+//        statement.setDouble(8, investidor.getCarteira().getMoedas().get(2).getSaldo());
+//        statement.setDouble(9, investidor.getCarteira().getMoedas().get(3).getSaldo());
+//        statement.setString(10, "Real");
+//
+//        statement.execute();
+//        conn.close();
+//    }
+    
+    
 //    
 //    public ResultSet consultarSenha(Investidor investidor) throws SQLException {
 //        String sql = "SELECT * FROM pessoa WHERE cpf = ? AND senha = ?";
@@ -125,9 +169,6 @@ public class InvestidorDAO {
 //        return resultado;
 //    }
 //    
-    
-
-    
 //    public void excluir(Aluno aluno) throws SQLException {
 //        String sql = "delete from aluno where usuario = ?";
 //        PreparedStatement statement = conn.prepareStatement(sql);
