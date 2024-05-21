@@ -197,6 +197,11 @@ public class JanelaMenu extends javax.swing.JFrame {
 
         consultarExtratoBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         consultarExtratoBtn.setText("CONSULTAR EXTRATO");
+        consultarExtratoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarExtratoBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -276,6 +281,11 @@ public class JanelaMenu extends javax.swing.JFrame {
 
         venderCriptoBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         venderCriptoBtn.setText("VENDER CRIPTOMOEDA");
+        venderCriptoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                venderCriptoBtnActionPerformed(evt);
+            }
+        });
 
         atualizarBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         atualizarBtn.setText("ATUALIZAR COTAÇÃO");
@@ -396,6 +406,16 @@ public class JanelaMenu extends javax.swing.JFrame {
     private void atualizarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarBtnActionPerformed
         controller.atualizarCotacao();
     }//GEN-LAST:event_atualizarBtnActionPerformed
+
+    private void venderCriptoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_venderCriptoBtnActionPerformed
+        JanelaSenhaVenderCripto vc = new JanelaSenhaVenderCripto(this);
+        vc.setVisible(true);
+    }//GEN-LAST:event_venderCriptoBtnActionPerformed
+
+    private void consultarExtratoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarExtratoBtnActionPerformed
+        JanelaSenhaExtrato se = new JanelaSenhaExtrato(this);
+        se.setVisible(true);
+    }//GEN-LAST:event_consultarExtratoBtnActionPerformed
 
     /**
      * @param args the command line arguments

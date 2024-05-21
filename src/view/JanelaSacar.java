@@ -177,8 +177,6 @@ public class JanelaSacar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void voltarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarBtnActionPerformed
-        JanelaMenu m = new JanelaMenu();
-        m.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_voltarBtnActionPerformed
 

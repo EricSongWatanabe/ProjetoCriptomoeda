@@ -7,6 +7,7 @@ package controller;
 import DAO.Conexao;
 import DAO.InvestidorDAO;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import model.Investidor;
@@ -38,11 +39,16 @@ public class ControllerDepositar {
         try{
             Connection conn = conexao.getConnection();
             InvestidorDAO dao = new InvestidorDAO(conn);
-            dao.atualizarDeposito(investidor);
-            JOptionPane.showMessageDialog(view, "Deposito realizado!");
-            JanelaConsultarSaldo c = new JanelaConsultarSaldo(investidor);
-            c.setVisible(true);
-            view.setVisible(false);
+            dao.atualizarReal(investidor);
+            ResultSet res = dao.consultarSenha(investidor);
+            if(res.next()){
+                int id = res.getInt("id");
+                dao.extratoDeposito(investidor, deposito, id);
+                JOptionPane.showMessageDialog(view, "Deposito realizado!");
+                JanelaConsultarSaldo c = new JanelaConsultarSaldo(investidor);
+                c.setVisible(true);
+                view.setVisible(false);
+            }
         } catch (SQLException e){
             JOptionPane.showMessageDialog(view, "Erro ao depositar!");
         }

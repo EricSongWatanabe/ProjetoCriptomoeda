@@ -36,7 +36,7 @@ public class ControllerSenhaDepositar {
         this.view = view;
     }
     
-    public void consultarSenha(){
+        public void consultarSenha(){
         Investidor investidor = new Investidor(null, null, viewM.getCpfLbl().getText(), 
                                       view.getSenhaTxt().getText());   
         Conexao conexao = new Conexao();

@@ -12,13 +12,14 @@ import model.Investidor;
  * @author eric song
  */
 public class JanelaComprarCripto extends javax.swing.JFrame {
-
+    private Investidor investidor;
     /**
      * Creates new form JanelaComprarCripto
      */
     public JanelaComprarCripto(Investidor investidor) {
         initComponents();
         controller = new ControllerComprarCripto(this, investidor);
+        this.investidor = investidor;
         
         double cotacaoBitcoin = investidor.getCarteira().getMoedas().get(1).getCotacao();
         String cotacaoBitcoinFormatada = String.format("%.2f", cotacaoBitcoin);
@@ -126,12 +127,27 @@ public class JanelaComprarCripto extends javax.swing.JFrame {
 
         comprarBitcoinBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         comprarBitcoinBtn.setText("COMPRAR BITCOIN");
+        comprarBitcoinBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comprarBitcoinBtnActionPerformed(evt);
+            }
+        });
 
         comprarEthereumBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         comprarEthereumBtn.setText("COMPRAR ETHEREUM");
+        comprarEthereumBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comprarEthereumBtnActionPerformed(evt);
+            }
+        });
 
         comprarRippleBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         comprarRippleBtn.setText("COMPRAR RIPPLE");
+        comprarRippleBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comprarRippleBtnActionPerformed(evt);
+            }
+        });
 
         voltarBtn.setText("VOLTAR");
         voltarBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -186,10 +202,23 @@ public class JanelaComprarCripto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void voltarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarBtnActionPerformed
-        JanelaMenu m = new JanelaMenu();
-        m.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_voltarBtnActionPerformed
+
+    private void comprarBitcoinBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comprarBitcoinBtnActionPerformed
+        JanelaComprarBitcoin cb = new JanelaComprarBitcoin(investidor);
+        cb.setVisible(true);
+    }//GEN-LAST:event_comprarBitcoinBtnActionPerformed
+
+    private void comprarEthereumBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comprarEthereumBtnActionPerformed
+        JanelaComprarEthereum ce = new JanelaComprarEthereum(investidor);
+        ce.setVisible(true);
+    }//GEN-LAST:event_comprarEthereumBtnActionPerformed
+
+    private void comprarRippleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comprarRippleBtnActionPerformed
+        JanelaComprarRipple ce = new JanelaComprarRipple(investidor);
+        ce.setVisible(true);
+    }//GEN-LAST:event_comprarRippleBtnActionPerformed
 
     /**
      * @param args the command line arguments
