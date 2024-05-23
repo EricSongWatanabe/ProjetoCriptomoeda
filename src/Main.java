@@ -22,13 +22,6 @@ import view.JanelaMenu;
  *
  * @author eric song
  */
-//public class Main {
-//    
-//    public static void main(String[] args) {
-//        Janela j = new Janela();
-//        j.setVisible(true);
-//    }
-//}
 
 public class Main {
     public static void main(String[] args) {

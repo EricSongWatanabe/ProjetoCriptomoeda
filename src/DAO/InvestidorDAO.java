@@ -17,8 +17,7 @@ import model.Ripple;
 
 
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Classe para estabelecer funcoes no banco de dados.
  */
 
 /**
@@ -563,22 +562,22 @@ public class InvestidorDAO {
     }
     
     public int maiorLog() {
-    int ultimoId = 0;
-    try {
-        if (conn != null) {
-            ResultSet resultSet = conn.createStatement().executeQuery("SELECT MAX(id_log) FROM log");
-            if (resultSet.next()) {
-                ultimoId = resultSet.getInt(1);
+        int ultimoId = 0;
+        try {
+            if (conn != null) {
+                ResultSet resultSet = conn.createStatement().executeQuery("SELECT MAX(id_log) FROM log");
+                if (resultSet.next()) {
+                    ultimoId = resultSet.getInt(1);
+                }
+                resultSet.close();
+            } else {
+                System.out.println("Conexão com o banco de dados não foi estabelecida.");
             }
-            resultSet.close();
-        } else {
-            System.out.println("Conexão com o banco de dados não foi estabelecida.");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
+        return ultimoId;
     }
-    return ultimoId;
-}
 
     
 }

@@ -1,7 +1,5 @@
-
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Assim que a carteira é criada, é criada também uma ArrayList de moedas.
  */
 package model;
 import java.util.ArrayList;
